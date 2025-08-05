@@ -586,7 +586,7 @@ async function convertWordToPdf(file) {
     const formData = new FormData();
     formData.append('file', file);
 
-    const response = await fetch('https://api.fileconvert.co.in/convert/word-to-pdf', {
+    const response = await fetch('convert/word-to-pdf', {
         method: 'POST',
         body: formData
     });
@@ -658,7 +658,7 @@ async function convertPdfToWord(file) {
     const formData = new FormData();
     formData.append('file', file);
 
-    const response = await fetch('https://api.fileconvert.co.in/convert/pdf-to-word', {
+    const response = await fetch('convert/pdf-to-word', {
         method: 'POST',
         body: formData
     });
@@ -1149,3 +1149,4 @@ function loadPptxGenJS() {
     });
 
 }
+
