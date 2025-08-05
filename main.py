@@ -13,9 +13,16 @@ CONVERTED_FOLDER = 'converted'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(CONVERTED_FOLDER, exist_ok=True)
 
+from flask import send_from_directory
+
 @app.route('/')
-def index():
-    return "✅ FileConvert Backend with Docker is running."
+def serve_index():
+    return send_from_directory('.', 'index.html')
+
+@app.route('/<path:path>')
+def serve_static_files(path):
+    return send_from_directory('.', path)
+
 
 @app.route('/convert/word-to-pdf', methods=['POST'])
 def convert_word_to_pdf():
@@ -72,12 +79,14 @@ def convert_pdf_to_word():
     return send_file(output_path, as_attachment=True)
 from flask import send_from_directory
 
+
 @app.route('/')
 def serve_index():
     return send_from_directory('.', 'index.html')
 
 @app.route('/<path:path>')
-def serve_static(path):
+def serve_static_files(path):
     return send_from_directory('.', path)
+
 
 
