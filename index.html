@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Convert files between Word, PDF, Excel, Image, and PowerPoint formats online — fast, secure, and free with Easy File Conversion.">
+
+    <title>Easy File Conversion - Convert Any File Format</title>
+    
+    <!-- AdSense Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2756415731978402" crossorigin="anonymous"></script>
+    
+    <!-- Required Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.16.0/pdf-lib.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="https://unpkg.com/docx@7.1.0/build/index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/compressorjs/1.1.1/compressor.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mammoth@1.4.0/mammoth.browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    
+    <!-- Fonts and Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1><i class="fas fa-magic"></i> <span class="tool-name">Easy File Conversion</span></h1>
+        <p class="tagline">Convert files between Word, PDF, Excel, Image, and more — fast, free, and secure.</p>
+    </header>
+    
+    <div class="container">
+        <!-- Left Sidebar with Content and Ad -->
+        <div class="ad-sidebar">
+            <div class="content-section">
+                <h3>About Our File Converter</h3>
+                <p>Our free online tools help you convert between document formats quickly and securely. All processing happens in your browser - we never upload your files to our servers.</p>
+                
+                <h4>Popular Conversions</h4>
+                <ul>
+                    <li>Word to PDF (DOC/DOCX → PDF)</li>
+                    <li>PDF to Word (PDF → DOCX)</li>
+                    <li>Excel to PDF (XLS/XLSX → PDF)</li>
+                    <li>Image to PDF (JPG/PNG → PDF)</li>
+                    <li>PDF to JPG (PDF → Image)</li>
+                </ul>
+            </div>
+            
+            <!-- Left Sidebar Ad -->
+            <div class="ad-wrapper">
+                <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="ca-pub-2756415731978402"
+                    data-ad-slot="2134912932"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
+                <script>
+                    try {
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    } catch (e) {
+                        console.error("AdSense error:", e);
+                    }
+                </script>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="tabs">
+                <div class="tab active" data-tab="word">Word Tools</div>
+                <div class="tab" data-tab="pdf">PDF Tools</div>
+                <div class="tab" data-tab="image">Image Tools</div>
+                <div class="tab" data-tab="presentation">Presentations</div>
+            </div>
+            
+            <!-- Word Tools Tab -->
+            <div class="tab-content active" id="word-tab">
+                <div class="converter-container">
+                    <div class="converter-card" data-converter="word-to-pdf">
+                        <i class="fas fa-file-word"></i>
+                        <h3>Word to PDF</h3>
+                        <p>Convert DOC/DOCX files to PDF format</p>
+                    </div>
+                    <div class="converter-card" data-converter="word-to-excel">
+                        <i class="fas fa-file-excel"></i>
+                        <h3>Word to Excel</h3>
+                        <p>Convert Word tables to Excel spreadsheets</p>
+                    </div>
+                    <div class="converter-card" data-converter="word-to-image">
+                        <i class="fas fa-image"></i>
+                        <h3>Word to Image</h3>
+                        <p>Convert Word documents to image files</p>
+                    </div>
+                    <div class="converter-card" data-converter="pdf-to-word">
+                        <i class="fas fa-file-pdf"></i>
+                        <h3>PDF to Word</h3>
+                        <p>Convert PDF files to editable Word documents</p>
+                    </div>
+                    <div class="converter-card" data-converter="image-to-word">
+                        <i class="fas fa-file-word"></i>
+                        <h3>Image to Word</h3>
+                        <p>Convert images with text to Word documents</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- PDF Tools Tab -->
+            <div class="tab-content" id="pdf-tab">
+                <div class="converter-container">
+                    <div class="converter-card" data-converter="pdf-edit">
+                        <i class="fas fa-edit"></i>
+                        <h3>PDF Edit</h3>
+                        <p>Edit text and images in PDF files</p>
+                    </div>
+                    <div class="converter-card" data-converter="pdf-merge">
+                        <i class="fas fa-object-group"></i>
+                        <h3>PDF Merge</h3>
+                        <p>Combine multiple PDFs into one</p>
+                    </div>
+                    <div class="converter-card" data-converter="pdf-compress">
+                        <i class="fas fa-compress-alt"></i>
+                        <h3>PDF Compress</h3>
+                        <p>Reduce PDF file size</p>
+                    </div>
+                    <div class="converter-card" data-converter="pdf-split">
+                        <i class="fas fa-cut"></i>
+                        <h3>PDF Split</h3>
+                        <p>Split PDF into multiple files</p>
+                    </div>
+                    <div class="converter-card" data-converter="pdf-repair">
+                        <i class="fas fa-tools"></i>
+                        <h3>PDF Repair</h3>
+                        <p>Fix corrupted PDF files</p>
+                    </div>
+                    <div class="converter-card" data-converter="image-to-pdf">
+                        <i class="fas fa-file-pdf"></i>
+                        <h3>Image to PDF</h3>
+                        <p>Convert images to PDF documents</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Image Tools Tab -->
+            <div class="tab-content" id="image-tab">
+                <div class="converter-container">
+                    <div class="converter-card" data-converter="image-compression">
+                        <i class="fas fa-compress-alt"></i>
+                        <h3>Image Compression</h3>
+                        <p>Reduce image file size</p>
+                    </div>
+                    <div class="converter-card" data-converter="image-merge">
+                        <i class="fas fa-object-group"></i>
+                        <h3>Image Merge</h3>
+                        <p>Combine multiple images into one</p>
+                    </div>
+                    <div class="converter-card" data-converter="image-editor">
+                        <i class="fas fa-edit"></i>
+                        <h3>Image Editor</h3>
+                        <p>Edit and enhance your images</p>
+                    </div>
+                    <div class="converter-card" data-converter="image-split">
+                        <i class="fas fa-cut"></i>
+                        <h3>Image Split</h3>
+                        <p>Split images into multiple parts</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Presentation Tools Tab -->
+            <div class="tab-content" id="presentation-tab">
+                <div class="converter-container">
+                    <div class="converter-card" data-converter="word-to-ppt">
+                        <i class="fas fa-file-powerpoint"></i>
+                        <h3>Word to PPT</h3>
+                        <p>Convert Word documents to PowerPoint</p>
+                    </div>
+                    <div class="converter-card" data-converter="ppt-to-word">
+                        <i class="fas fa-file-word"></i>
+                        <h3>PPT to Word</h3>
+                        <p>Convert PowerPoint to Word documents</p>
+                    </div>
+                    <div class="converter-card" data-converter="ppt-to-pdf">
+                        <i class="fas fa-file-pdf"></i>
+                        <h3>PPT to PDF</h3>
+                        <p>Convert PowerPoint to PDF</p>
+                    </div>
+                    <div class="converter-card" data-converter="pdf-to-ppt">
+                        <i class="fas fa-file-powerpoint"></i>
+                        <h3>PDF to PPT</h3>
+                        <p>Convert PDF to PowerPoint</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main Content Ad 1 -->
+            <div class="ad-wrapper">
+                <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="ca-pub-2756415731978402"
+                    data-ad-slot="2134912932"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
+                <script>
+                    try {
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    } catch (e) {
+                        console.error("AdSense error:", e);
+                    }
+                </script>
+            </div>
+            
+            <!-- File Input UI -->
+            <div class="file-input-container" id="converter-ui">
+                <h2 id="converter-title">Convert File</h2>
+                <div class="file-input-wrapper" id="file-drop-area">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p id="file-instructions">Drag & drop your file here or click to browse</p>
+                    <p class="file-types" id="supported-formats">Supported formats: </p>
+                    <input type="file" id="file-input" style="display: none;">
+                </div>
+                
+                <!-- Tool content sections -->
+                <div class="content-section tool-content" id="word-to-pdf-info">
+                    <h2>Convert Word to PDF Online</h2>
+                    <p>Upload your DOC or DOCX file and we’ll convert it to a high-quality PDF using our backend server.</p>
+                </div>
+                
+                <div class="content-section tool-content" id="word-to-excel-info">
+                    <h2>Convert Word to Excel Online</h2>
+                    <p>Effortlessly extract data from Word documents and convert it into an Excel spreadsheet format (.xlsx).</p>
+                    <!-- More content... -->
+                </div>
+                <div class="content-section tool-content" id="pdf-to-word-info">
+  <h2>Convert PDF to Word</h2>
+  <p>Turn your PDF file into an editable Microsoft Word document (DOCX format).</p>
+</div>
+
+                <!-- More tool content sections... -->
+                
+                <div class="options-container" id="conversion-options">
+                    <!-- Options will be dynamically inserted here -->
+                </div>
+                
+                <div class="progress-container" id="progress-container">
+                    <p>Processing your file...</p>
+                    <div class="progress-bar">
+                        <div class="progress" id="progress-bar"></div>
+                    </div>
+                    <p id="progress-text">0%</p>
+                </div>
+                
+                <div class="result-container" id="result-container">
+                    <h3>Conversion Complete!</h3>
+                    <p>Your file has been successfully converted.</p>
+                    <a href="#" class="btn btn-primary" id="download-btn">Download File</a>
+                    <button class="btn btn-secondary" id="new-conversion">New Conversion</button>
+                </div>
+                
+                <button class="btn btn-primary" id="convert-btn" style="display: none;">Convert</button>
+            </div>
+            
+            <!-- More Content Sections -->
+            <div class="content-section">
+                <h3>Supported File Formats</h3>
+                <p>We support conversion between all major document, image, and presentation formats:</p>
+                
+                <div class="format-grid">
+                    <div>
+                        <h4>Document Formats</h4>
+                        <ul>
+                            <li>Microsoft Word (DOC, DOCX)</li>
+                            <li>PDF (Portable Document Format)</li>
+                            <li>Rich Text Format (RTF)</li>
+                            <li>Plain Text (TXT)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Spreadsheet Formats</h4>
+                        <ul>
+                            <li>Microsoft Excel (XLS, XLSX)</li>
+                            <li>Comma Separated Values (CSV)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main Content Ad 2 -->
+            <div class="ad-wrapper">
+                <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="ca-pub-2756415731978402"
+                    data-ad-slot="7842535184"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
+                <script>
+                    try {
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    } catch (e) {
+                        console.error("AdSense error:", e);
+                    }
+                </script>
+            </div>
+            
+            <div class="content-section">
+                <h3>Frequently Asked Questions</h3>
+                
+                <div class="faq-item">
+                    <h4>Is this service really free?</h4>
+                    <p>Yes! All our conversion tools are completely free to use with no hidden charges.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h4>Are my files secure?</h4>
+                    <p>Absolutely. We process all files and Quality ouput is our priority</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right Sidebar with Content and Ad -->
+        <div class="ad-sidebar">
+            <div class="content-section">
+                <h3>Conversion Tips & Tricks</h3>
+                
+                <h4>For Best Results:</h4>
+                <ul>
+                    <li>Use text-based PDFs rather than scanned documents</li>
+                    <li>Complex formatting may not convert perfectly</li>
+                    <li>For large files, consider splitting them</li>
+                </ul>
+            </div>
+            
+            <!-- Right Sidebar Ad -->
+            <div class="ad-wrapper">
+                <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="ca-pub-2756415731978402"
+                    data-ad-slot="4229543489"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
+                <script>
+                    try {
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    } catch (e) {
+                        console.error("AdSense error:", e);
+                    }
+                </script>
+            </div>
+        </div>
+        
+        <!-- Bottom Ad with Content -->
+        <div class="ad-container ad-bottom">
+            <div class="content-section">
+                <h3>About Our Service</h3>
+                <p>We've been providing free online file conversion tools since 2025. Our mission is to make document conversion accessible to everyone.</p>
+            </div>
+            
+            <div class="ad-wrapper">
+                <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="ca-pub-2756415731978402"
+                    data-ad-slot="6387204472"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
+                <script>
+                    try {
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    } catch (e) {
+                        console.error("AdSense error:", e);
+                    }
+                </script>
+            </div>
+        </div>
+        
+        <footer>
+            <div class="content-section">
+                <p>&copy; 2025 <span class="tool-name">Easy File Conversion</span> - Free Online File Converter</p>
+                <p>All conversions are performed using different tools so that output file is of high quality</p>
+                <p>
+                    <a href="privacy-policy.html">Privacy Policy</a> |
+                    <a href="terms.html">Terms & Conditions</a> |
+                    <a href="contact.html">Contact Us</a> |
+                    <a href="about.html">About Us</a>
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Image Editor Modal -->
+    <div class="editor-modal" id="image-editor-modal">
+        <div class="editor-container">
+            <h2>Image Editor</h2>
+            <div class="editor-tools">
+                <button class="editor-tool-btn" id="brightness-btn">Brightness</button>
+                <button class="editor-tool-btn" id="contrast-btn">Contrast</button>
+                <button class="editor-tool-btn" id="saturation-btn">Saturation</button>
+                <button class="editor-tool-btn" id="grayscale-btn">Grayscale</button>
+                <button class="editor-tool-btn" id="sepia-btn">Sepia</button>
+                <button class="editor-tool-btn" id="reset-btn">Reset</button>
+            </div>
+            
+            <div class="editor-canvas-container">
+                <canvas id="editor-canvas"></canvas>
+            </div>
+            
+            <input type="range" id="editor-range" class="editor-range" min="-100" max="100" value="0">
+            
+            <div class="editor-actions">
+                <button class="btn btn-secondary" id="cancel-edit">Cancel</button>
+                <button class="btn btn-primary" id="apply-edit">Apply</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+
+</html>
