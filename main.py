@@ -70,5 +70,14 @@ def convert_pdf_to_word():
         return {'error': 'Conversion failed'}, 500
 
     return send_file(output_path, as_attachment=True)
+from flask import send_from_directory
+
+@app.route('/')
+def serve_index():
+    return send_from_directory('.', 'index.html')
+
+@app.route('/<path:path>')
+def serve_static(path):
+    return send_from_directory('.', path)
 
 
